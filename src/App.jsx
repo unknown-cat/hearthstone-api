@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { Header } from './components/';
-import { Home, SingleCard, Login, Register } from './pages/';
+import { Header } from './components';
+import { Home, SingleCard, Login, Register } from './pages';
 
 const App = () => {
   return (
