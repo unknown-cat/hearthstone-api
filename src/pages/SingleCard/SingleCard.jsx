@@ -1,45 +1,52 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { CardsContext } from '../../context/cardsContext';
+import { getData, SINGLE_CARD_API_URL } from '../../api/api';
 
-import styles from './singleCard.module.css';
+import s from './singleCard.module.css';
 
 const SingleCard = () => {
-  const { cards } = useContext(CardsContext);
   const { cardId } = useParams();
   const [singleCard, setSingleCard] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(
-    () => setSingleCard(cards.find((card) => card.cardId === cardId)),
-    [cardId, cards]
-  );
+  useEffect(() => {
+    const getCard = async () => {
+      const cardData = await getData(`${SINGLE_CARD_API_URL}${cardId}`);
+      setSingleCard(...cardData);
+      setIsLoading(false);
+    };
+
+    getCard();
+  }, [cardId]);
 
   const { artist, cardSet, img, name, rarity, type, faction } = singleCard;
 
+  if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
+
   return (
-    <article className={styles.singleCard}>
+    <article className={s.singleCard}>
       <img src={img} alt={name} />
-      <section className={styles.description}>
-        <p className={styles.text}>
+      <section className={s.description}>
+        <p className={s.text}>
           <span>Artist: </span>
           {artist ? artist : 'Unknown'}
         </p>
-        <p className={styles.text}>
+        <p className={s.text}>
           <span>Card Name: </span> {name}
         </p>
-        <p className={styles.text}>
+        <p className={s.text}>
           <span>Type: </span>
           {type}
         </p>
-        <p className={styles.text}>
+        <p className={s.text}>
           <span>Card Set: </span>
           {cardSet}
         </p>
-        <p className={styles.text}>
+        <p className={s.text}>
           <span>Rarity: </span>
           {rarity ? rarity : 'Standart'}
         </p>
-        <p className={styles.text}>
+        <p className={s.text}>
           <span>Faction: </span>
           {faction ? faction : null}
         </p>
