@@ -1,0 +1,29 @@
+.singleCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 5rem 0;
+  background-color: #1d1c1c;
+}
+
+.description {
+  padding: 2rem;
+}
+
+.text {
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.text span {
+  font-weight: 700;
+}
+
+@media (max-width: 400px) {
+  .singleCard img {
+    width: 95%;
+  }
+}
