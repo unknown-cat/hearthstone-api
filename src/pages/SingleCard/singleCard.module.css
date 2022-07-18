@@ -5,6 +5,8 @@
   align-items: center;
   width: 90vw;
   margin: 0 auto;
+  padding: 5rem 0;
+  background-color: #1d1c1c;
 }
 
 .description {
