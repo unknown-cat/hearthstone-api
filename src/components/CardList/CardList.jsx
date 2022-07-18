@@ -14,7 +14,7 @@ const CardList = () => {
 
   return (
     <section className={s.cardList}>
-      {cards?.map(({ ...props }) => (
+      {cards.map(({ ...props }) => (
         <Card key={props.cardId} props={props} />
       ))}
     </section>
