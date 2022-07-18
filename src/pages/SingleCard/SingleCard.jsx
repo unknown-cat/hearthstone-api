@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
 import { useParams } from 'react-router-dom';
+
 import { getData, SINGLE_CARD_API_URL } from '../../api/api';
+
+import cardBack from '../../assets/card-back.png';
 
 import s from './singleCard.module.css';
 
@@ -25,7 +29,7 @@ const SingleCard = () => {
 
   return (
     <article className={s.singleCard}>
-      <img src={img} alt={name} />
+      <img src={img ? img : cardBack} alt={name} />
       <section className={s.description}>
         <p className={s.text}>
           <span>Artist: </span>

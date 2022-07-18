@@ -1,10 +1,20 @@
 .card {
+  position: relative;
   background-color: #1d1c1c;
   border-radius: 0.5rem;
 }
 
 .card img {
-  margin-top: -1.5rem;
   width: 100%;
   height: auto;
+}
+
+.section {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
 }

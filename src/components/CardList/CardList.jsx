@@ -5,8 +5,8 @@ import { Card } from '../../components';
 import s from './cardList.module.css';
 
 const CardList = ({ cards }) => {
-  if (cards.length < 1) {
-    return <h1 style={{ textAlign: 'center' }}>Oops it is empty!</h1>;
+  if (cards.message) {
+    return <h1 style={{ textAlign: 'center' }}>{cards.message}</h1>;
   }
 
   return (
