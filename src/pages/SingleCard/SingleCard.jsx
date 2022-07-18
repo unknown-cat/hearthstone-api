@@ -12,16 +12,16 @@ const SingleCard = () => {
   useEffect(() => {
     const getCard = async () => {
       const cardData = await getData(`${SINGLE_CARD_API_URL}${cardId}`);
-      setSingleCard(...cardData);
+      setSingleCard(cardData[0]);
       setIsLoading(false);
     };
 
     getCard();
   }, [cardId]);
 
-  const { artist, cardSet, img, name, rarity, type, faction } = singleCard;
-
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
+
+  const { artist, cardSet, img, name, rarity, type, faction } = singleCard;
 
   return (
     <article className={s.singleCard}>
