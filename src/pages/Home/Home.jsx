@@ -12,14 +12,10 @@ const Home = () => {
 
   useEffect(() => {
     const getCardsArray = async () => {
-      try {
-        const cardsArray = await getData(
-          `${SEARCH_CARDS_API_URL}${submittedQuery}`
-        );
-        setCards(cardsArray.filter((c) => c.img));
-      } catch (err) {
-        return setCards([]);
-      }
+      const cardsArray = await getData(
+        `${SEARCH_CARDS_API_URL}${submittedQuery}`
+      );
+      setCards(cardsArray);
     };
 
     getCardsArray();
