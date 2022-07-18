@@ -7,7 +7,7 @@ const options = {
   },
 };
 
-export const API_URL = `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/`;
+export const SEARCH_CARDS_API_URL = `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/`;
 export const SINGLE_CARD_API_URL = 'https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/';
 
 export const getData = async (url) => {
