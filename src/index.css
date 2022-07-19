@@ -27,20 +27,3 @@ a {
   width: 90vw;
   margin: 1rem auto;
 }
-
-.auth-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  width: 90vw;
-  margin: 0 auto;
-}
-
-.sign-in-sign-up-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 45%;
-  min-width: 320px;
-  margin-bottom: 5rem;
-}
