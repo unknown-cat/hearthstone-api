@@ -1,0 +1,3 @@
+.registerContainer {
+  composes: loginContainer from '../LoginForm/loginForm.module.css';
+}
