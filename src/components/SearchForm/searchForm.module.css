@@ -1,0 +1,22 @@
+.search {
+  display: flex;
+  width: 90vw;
+  margin: 1rem auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.1rem;
+  font: inherit;
+  color: black;
+}
