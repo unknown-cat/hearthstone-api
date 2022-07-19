@@ -7,9 +7,3 @@
   padding-bottom: 2.5rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-
-@media screen and (min-width: 992px) {
-  .cardList {
-    width: 95vw;
-  }
-}

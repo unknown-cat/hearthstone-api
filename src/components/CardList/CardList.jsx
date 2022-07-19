@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Card } from '../../components';
-import { CardsContext } from '../../context/cardsContext';
 
 import s from './cardList.module.css';
 
-const CardList = () => {
-  const { cards } = useContext(CardsContext);
-
-  if (cards.length < 1) {
-    return <h1 style={{ textAlign: 'center' }}>Oops it is empty!</h1>;
+const CardList = ({ cards }) => {
+  if (cards.message) {
+    return <h1 style={{ textAlign: 'center' }}>{cards.message}</h1>;
   }
 
   return (
