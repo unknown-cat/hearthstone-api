@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { getData, SINGLE_CARD_API_URL } from '../../api/api';
+import { useGetCardQuery } from '../../services/cardsApi';
 
 import cardBack from '../../assets/card-back.png';
 
@@ -10,22 +10,11 @@ import s from './singleCard.module.css';
 
 const SingleCard = () => {
   const { cardId } = useParams();
-  const [singleCard, setSingleCard] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const getCard = async () => {
-      const cardData = await getData(`${SINGLE_CARD_API_URL}${cardId}`);
-      setSingleCard(cardData[0]);
-      setIsLoading(false);
-    };
-
-    getCard();
-  }, [cardId]);
+  const { data = [], isLoading } = useGetCardQuery(cardId);
 
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
 
-  const { artist, cardSet, img, name, rarity, type, faction } = singleCard;
+  const { artist, cardSet, img, name, rarity, type, faction } = data[0];
 
   return (
     <article className={s.singleCard}>

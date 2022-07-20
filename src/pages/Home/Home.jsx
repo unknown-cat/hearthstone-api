@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { SearchForm, CardList } from '../../components';
 
-import { getData, SEARCH_CARDS_API_URL } from '../../api/api';
+import { useGetCardsQuery } from '../../services/cardsApi';
 
 import s from './home.module.css';
 
 const Home = () => {
   const [submittedQuery, setSubmittedQuery] = useState('');
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    const getCardsArray = async () => {
-      const cardsArray = await getData(
-        `${SEARCH_CARDS_API_URL}${submittedQuery}`
-      );
-      setCards(cardsArray);
-    };
-
-    getCardsArray();
-  }, [submittedQuery]);
+  const { data = [], isLoading } = useGetCardsQuery(submittedQuery);
 
   return (
     <main className={s.main}>
       <SearchForm setSubmittedQuery={setSubmittedQuery} />
-      <CardList cards={cards} />
+      <CardList cards={data} isLoading={isLoading} />
     </main>
   );
 };
