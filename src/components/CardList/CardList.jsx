@@ -4,9 +4,13 @@ import { Card } from '../../components';
 
 import s from './cardList.module.css';
 
-const CardList = ({ cards }) => {
-  if (cards.message) {
-    return <h1 style={{ textAlign: 'center' }}>{cards.message}</h1>;
+const CardList = ({ cards, isLoading }) => {
+  if (cards < 1) {
+    return (
+      <h2 style={{ textAlign: 'center' }}>
+        {isLoading ? <code>Loading...</code> : <span>Search Your Card</span>}
+      </h2>
+    );
   }
 
   return (
