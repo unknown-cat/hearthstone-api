@@ -1,5 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { Header } from './components';
+
+import { ErrorBoundary } from 'react-error-boundary';
+
+import { Header, ErrorFallback } from './components';
+
 import { Home, SingleCard, Login, Register } from './pages';
 
 const App = () => {
@@ -10,7 +14,14 @@ const App = () => {
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
         <Route path='/cards'>
-          <Route path=':cardId' element={<SingleCard />} />
+          <Route
+            path=':cardId'
+            element={
+              <ErrorBoundary fallback={<ErrorFallback />}>
+                <SingleCard />
+              </ErrorBoundary>
+            }
+          />
         </Route>
         <Route
           path='*'

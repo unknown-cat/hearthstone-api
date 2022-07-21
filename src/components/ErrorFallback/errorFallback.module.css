@@ -1,0 +1,13 @@
+.error {
+  composes: singleCard from '../../pages/SingleCard/singleCard.module.css';
+  flex-direction: column;
+}
+
+.text {
+  composes: text from '../../pages/SingleCard/singleCard.module.css';
+  margin-bottom: 0;
+}
+
+.message {
+  font-size: 2rem;
+}
