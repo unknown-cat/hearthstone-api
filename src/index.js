@@ -8,6 +8,8 @@ import { store } from './store';
 
 import { Provider } from 'react-redux';
 
+import { UserProvider } from './contexts/userContext';
+
 import App from './App';
 
 import './index.css';
@@ -16,9 +18,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </UserProvider>
     </Provider>
   </React.StrictMode>
 );
