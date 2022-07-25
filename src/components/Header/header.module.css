@@ -1,0 +1,38 @@
+.section {
+  composes: section from '../../index.css';
+}
+
+.navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.login {
+  margin-right: 2rem;
+}
+
+.name {
+  color: #fbbf24;
+}
+
+.glow {
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    color: #fbbf24;
+  }
+
+  to {
+    color: #fbbf24;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fbbf24, 0 0 14px #fbbf24,
+      0 0 5px #fbbf24, 0 0 6px #fbbf24, 0 0 10px #fbbf24, 0 0 20px #fbbf24;
+  }
+}
