@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { Card } from '../../components';
 
 import s from './cardList.module.css';
@@ -20,6 +22,17 @@ const CardList = ({ cards, isLoading }) => {
       ))}
     </section>
   );
+};
+
+CardList.propTypes = {
+  cards: PropTypes.array,
+  isLoading: PropTypes.bool.isRequired,
+  children: PropTypes.element,
+};
+
+CardList.defaultProps = {
+  cards: [],
+  isLoading: false,
 };
 
 export default CardList;
