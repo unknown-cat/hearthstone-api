@@ -21,7 +21,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser(formFields);
+    setUser({ ...formFields, guest: true });
     resetFormFields(setFormFields, defaultFormFields);
   };
 

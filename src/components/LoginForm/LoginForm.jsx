@@ -46,11 +46,7 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setTimeout(() => {
-        navigate('/');
-      }, 1500);
-    }
+    if (isLoggedIn) navigate('/');
   }, [isLoggedIn, navigate]);
 
   return (

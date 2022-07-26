@@ -24,7 +24,7 @@ const Header = () => {
   const RenderGuest = () => (
     <>
       <Link to='/login' className={s.login}>
-        {user && !isLoggedIn ? <span className={s.glow}>Login</span> : 'Login'}
+        {user.name ? <span className={s.glow}>Login</span> : 'Login'}
       </Link>
       <Link to='/register'>Register</Link>
     </>

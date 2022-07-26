@@ -5,7 +5,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useLocalStorage('user', null);
+  const [user, setUser] = useLocalStorage('user', { guest: true });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
