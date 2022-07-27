@@ -34,7 +34,13 @@
   [**Card**](https://github.com/unknown-cat/hearthstone-api/blob/feature/prop-types/src/components/Card/Card.jsx),<br>
   [**CardList.jsx**](https://github.com/unknown-cat/hearthstone-api/blob/feature/prop-types/src/components/CardList/CardList.jsx)
 
-- Поиск не должен триггерить много запросов к серверу <br>
-  [пример компонента]()
+- Поиск не должен триггерить много запросов к серверу
 
 # `Redux`
+
+- Используем Modern Redux with Redux Toolkit
+- Используем слайсы
+- Есть хотя бы одна кастомная мидлвара
+- Используется _RTK Query_ <br>
+  [**RTK QUERY**](https://github.com/unknown-cat/hearthstone-api/commit/9eea85fbae0153b0cfd1f894d82a4ec4dbd4cefe)
+- Используется Transforming Responses
