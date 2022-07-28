@@ -1,8 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../../contexts/userContext';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { loginUser } from '../../features/user/userSlice';
 
 import { Button, FormInput } from '..';
 
@@ -16,27 +18,15 @@ const defaultFormFields = {
 };
 
 const LoginForm = () => {
-  const { user, setUser, setIsLoggedIn, isLoggedIn } = useContext(UserContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const { user } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      user.email === formFields.email &&
-      user.password === formFields.password
-    ) {
-      setUser((prevState) => {
-        return {
-          ...prevState,
-          guest: false,
-        };
-      });
-      setIsLoggedIn(true);
-    }
-
+    dispatch(loginUser(formFields));
     resetFormFields(setFormFields, defaultFormFields);
   };
 
@@ -46,8 +36,8 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) navigate('/');
-  }, [isLoggedIn, navigate]);
+    if (!user.guest) navigate('/');
+  }, [user.guest, navigate]);
 
   return (
     <section className={s.loginContainer}>
@@ -74,7 +64,7 @@ const LoginForm = () => {
           autoComplete='off'
         />
 
-        <Button type='submit'>{isLoggedIn ? 'Success' : 'Login'}</Button>
+        <Button type='submit'>Login</Button>
       </form>
     </section>
   );
