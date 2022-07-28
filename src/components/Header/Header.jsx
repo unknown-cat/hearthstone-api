@@ -1,25 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Outlet, Link } from 'react-router-dom';
 
-import { UserContext } from '../../contexts/userContext';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { logoutUser } from '../../features/user/userSlice';
 
 import HsLogo from '../../assets/hsLogo.png';
 
 import s from './header.module.css';
 
 const Header = () => {
-  const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const { user } = useSelector((store) => store.user);
 
-  const handleClick = () => {
-    setUser((prevState) => {
-      return {
-        ...prevState,
-        guest: true,
-      };
-    });
-    setIsLoggedIn(false);
-  };
+  const dispatch = useDispatch();
+
+  const handleClick = () => dispatch(logoutUser());
 
   const RenderGuest = () => (
     <>
@@ -48,8 +44,8 @@ const Header = () => {
           <Link to='/' className={s.logo}>
             <img src={HsLogo} alt='haerthstone site logo' />
           </Link>
-          {isLoggedIn && user && <RenderUser />}
-          {!isLoggedIn && <RenderGuest />}
+          {!user.guest && user.name && <RenderUser />}
+          {user.guest && <RenderGuest />}
         </nav>
       </header>
       <Outlet />

@@ -1,6 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
-import { UserContext } from '../../contexts/userContext';
+import { useDispatch } from 'react-redux';
+
+import { addUser } from '../../features/user/userSlice';
 
 import { Button, FormInput } from '..';
 
@@ -12,16 +14,17 @@ const defaultFormFields = {
   name: '',
   email: '',
   password: '',
+  guest: true,
 };
 
 const RegisterForm = () => {
-  const { setUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { name, email, password } = formFields;
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser({ ...formFields, guest: true });
+    dispatch(addUser(formFields));
     resetFormFields(setFormFields, defaultFormFields);
   };
 
