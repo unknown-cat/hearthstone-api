@@ -12,7 +12,8 @@ export const authMiddleware = (store) => (next) => (action) => {
   }
 
   if (addUser.match(action)) {
-    localStorage.setItem('user', JSON.stringify(userData));
+    const { payload } = action;
+    localStorage.setItem('user', JSON.stringify(payload));
   }
 
   return next(action);

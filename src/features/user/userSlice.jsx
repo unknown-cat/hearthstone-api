@@ -10,11 +10,8 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginUser: (state, { payload }) => {
-      const { email, password } = payload;
-      const { email: localEmail, password: localPassword } = state.user;
-      if (email === localEmail && password === localPassword)
-        state.user.guest = false;
+    loginUser: (state) => {
+      state.user.guest = false;
     },
     logoutUser: (state) => (state.user.guest = true),
     addUser: (state, { payload }) => {
