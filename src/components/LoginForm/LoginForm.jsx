@@ -1,39 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { loginUser } from '../../features/user/userSlice';
+import { useSelector } from 'react-redux';
 
 import { Button, FormInput } from '..';
 
-import { resetFormFields } from '../../utils/utils';
+import { validate } from '../../utils/utils';
+
+import useForm from '../../hooks/useForm';
 
 import s from './loginForm.module.css';
 
-const defaultFormFields = {
-  email: '',
-  password: '',
-};
-
 const LoginForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const { email, password } = formFields;
+  const { handleChange, handleSubmit, values, errors } = useForm(validate);
+  const { email, password } = values;
   const { user } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(formFields));
-    resetFormFields(setFormFields, defaultFormFields);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
 
   useEffect(() => {
     if (!user.guest) navigate('/');
@@ -50,7 +33,7 @@ const LoginForm = () => {
           label='Email'
           type='email'
           name='email'
-          required
+          error={errors.email}
         />
 
         <FormInput
@@ -59,9 +42,8 @@ const LoginForm = () => {
           label='Password'
           type='password'
           name='password'
-          title='Enter a password consisting of 6-20 hexadecimal digits'
-          required
           autoComplete='off'
+          error={errors.password}
         />
 
         <Button type='submit'>Login</Button>

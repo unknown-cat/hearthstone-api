@@ -1,5 +1,6 @@
-.form {
+.container {
   margin: 30px 0;
+  position: relative;
 }
 
 .input {
@@ -18,4 +19,11 @@
 
 input[type='password'] {
   letter-spacing: 0.3em;
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  color: tomato;
 }

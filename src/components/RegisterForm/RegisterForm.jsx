@@ -1,37 +1,14 @@
-import React, { useState } from 'react';
-
-import { useDispatch } from 'react-redux';
-
-import { addUser } from '../../features/user/userSlice';
-
 import { Button, FormInput } from '..';
 
-import { resetFormFields } from '../../utils/utils';
+import { validate } from '../../utils/utils';
+
+import useForm from '../../hooks/useForm';
 
 import s from './registerForm.module.css';
 
-const defaultFormFields = {
-  name: '',
-  email: '',
-  password: '',
-  guest: true,
-};
-
 const RegisterForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const { name, email, password } = formFields;
-  const dispatch = useDispatch();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addUser(formFields));
-    resetFormFields(setFormFields, defaultFormFields);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+  const { handleSubmit, handleChange, values, errors } = useForm(validate);
+  const { name, email, password } = values;
 
   return (
     <section className={s.registerContainer}>
@@ -44,7 +21,7 @@ const RegisterForm = () => {
           label='Name'
           type='text'
           name='name'
-          required
+          error={errors.name}
         />
         <FormInput
           onChange={handleChange}
@@ -52,7 +29,7 @@ const RegisterForm = () => {
           label='Email'
           type='email'
           name='email'
-          required
+          error={errors.email}
         />
         <FormInput
           onChange={handleChange}
@@ -60,9 +37,8 @@ const RegisterForm = () => {
           label='Password'
           type='password'
           name='password'
-          title='Enter an password consisting of 6-12 hexadecimal digits'
           autoComplete='off'
-          required
+          error={errors.password}
         />
         <Button type='submit'>Register</Button>
       </form>
