@@ -4,7 +4,7 @@ import userReducer from './features/user/userSlice';
 
 import { cardsApi } from './services/cardsApi';
 
-import { authMiddleware } from './authMiddleware';
+import { localstorageMiddleware } from './localstorageMiddleware';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +12,7 @@ export const store = configureStore({
     [cardsApi.reducerPath]: cardsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([cardsApi.middleware]).concat(authMiddleware),
+    getDefaultMiddleware()
+      .concat(cardsApi.middleware)
+      .concat(localstorageMiddleware),
 });

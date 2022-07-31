@@ -1,0 +1,3 @@
+.favoritesList {
+  composes: cardList from '../../components/CardList/cardList.module.css';
+}

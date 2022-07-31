@@ -8,6 +8,7 @@ const initialState = {
   email: '',
   password: '',
   guest: true,
+  favorites: [],
 };
 
 const useForm = (validate) => {

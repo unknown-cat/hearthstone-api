@@ -12,14 +12,13 @@ import s from './header.module.css';
 
 const Header = () => {
   const { user } = useSelector((store) => store.user);
-
   const dispatch = useDispatch();
 
   const handleClick = () => dispatch(logoutUser());
 
   const RenderGuest = () => (
     <>
-      <Link to='/login' className={s.login}>
+      <Link to='/login' className={s.navItem}>
         {user.name ? <span className={s.glow}>Login</span> : 'Login'}
       </Link>
       <Link to='/register'>Register</Link>
@@ -28,10 +27,13 @@ const Header = () => {
 
   const RenderUser = () => (
     <>
-      <h2 to='/login' className={s.login}>
+      <h2 to='/login' className={s.navItem}>
         Hello <span className={s.name}>{user?.name}</span>!
       </h2>
-      <Link to='/' className={s.login} onClick={handleClick}>
+      <Link to='/favorites' className={s.navItem}>
+        favorites
+      </Link>
+      <Link to='/' className={s.navItem} onClick={handleClick}>
         logout
       </Link>
     </>

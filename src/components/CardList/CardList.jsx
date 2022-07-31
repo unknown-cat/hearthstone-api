@@ -6,11 +6,13 @@ import { Card } from '../../components';
 
 import s from './cardList.module.css';
 
-const CardList = ({ cards, isLoading }) => {
+const CardList = ({ cards, isLoading, favorites }) => {
   if (cards < 1) {
     return (
-      <h2 style={{ textAlign: 'center' }}>
-        {isLoading ? <code>Loading...</code> : <span>Search Your Card</span>}
+      <h2 style={{ textAlign: 'center', paddingTop: '3rem' }}>
+        {isLoading && <code>Loading...</code>}
+        {favorites && 'Add some Favorite cards!'}
+        {!favorites && !isLoading ? 'Start Searching!' : null}
       </h2>
     );
   }

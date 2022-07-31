@@ -18,3 +18,14 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
 }
+
+.btn {
+  composes: button from '../Button/button.module.css';
+  position: absolute;
+  width: unset;
+  bottom: 0;
+  right: 0;
+  border: none;
+  font-size: 2rem;
+  z-index: 100;
+}
