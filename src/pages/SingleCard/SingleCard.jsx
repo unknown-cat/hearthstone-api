@@ -4,6 +4,12 @@ import { useParams } from 'react-router-dom';
 
 import { useGetCardQuery } from '../../services/cardsApi';
 
+import { Button } from '../../components';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { toggleFavoriteCard } from '../../features/user/userSlice';
+
 import cardBack from '../../assets/card-back.png';
 
 import s from './singleCard.module.css';
@@ -11,38 +17,37 @@ import s from './singleCard.module.css';
 const SingleCard = () => {
   const { cardId } = useParams();
   const { data = [], isLoading } = useGetCardQuery(cardId);
+  const { user } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  const isExist = user.favorites?.some((i) => i.cardId === cardId);
 
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
 
-  const { artist, cardSet, img, name, rarity, type, faction } = data[0];
+  const { img, name } = data[0];
+
+  const handleToggleClick = () => {
+    dispatch(toggleFavoriteCard({ ...data[0] }));
+  };
 
   return (
     <article className={s.singleCard}>
       <img src={img ? img : cardBack} alt={name} />
       <section className={s.description}>
-        <p className={s.text}>
-          <span>Artist: </span>
-          {artist ? artist : 'Unknown'}
-        </p>
-        <p className={s.text}>
-          <span>Card Name: </span> {name}
-        </p>
-        <p className={s.text}>
-          <span>Type: </span>
-          {type}
-        </p>
-        <p className={s.text}>
-          <span>Card Set: </span>
-          {cardSet}
-        </p>
-        <p className={s.text}>
-          <span>Rarity: </span>
-          {rarity ? rarity : 'Standart'}
-        </p>
-        <p className={s.text}>
-          <span>Faction: </span>
-          {faction ? faction : null}
-        </p>
+        {Object.entries(data[0]).map(([key, value]) => {
+          if (typeof value !== 'object') {
+            return (
+              <p className={s.text} key={key}>
+                <span>{key}:</span> {value}
+              </p>
+            );
+          } else {
+            return null;
+          }
+        })}
+        <Button onClick={handleToggleClick}>
+          {!isExist ? 'add' : 'remove'}
+        </Button>
       </section>
     </article>
   );

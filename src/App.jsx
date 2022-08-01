@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { Header, ErrorFallback } from './components';
 
-import { Home, SingleCard, Login, Register } from './pages';
+import { Home, SingleCard, Login, Register, Favorites } from './pages';
 
 const App = () => {
   return (
@@ -13,6 +13,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
+        <Route path='favorites' element={<Favorites />} />
         <Route path='/cards'>
           <Route
             path=':cardId'

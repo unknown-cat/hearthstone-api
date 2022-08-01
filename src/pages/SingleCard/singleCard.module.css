@@ -9,17 +9,29 @@
   background-color: #1d1c1c;
 }
 
+.singleCard img {
+  align-self: flex-start;
+  width: 40%;
+  max-width: 500px;
+}
+
 .description {
   padding: 2rem;
+  min-width: 320px;
+  max-width: 500px;
 }
 
 .text {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .text span {
   font-weight: 700;
+  word-break: break-all;
+  white-space: normal;
 }
 
 @media (max-width: 400px) {
