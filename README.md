@@ -38,9 +38,25 @@
 
 # `Redux`
 
-- Используем Modern Redux with Redux Toolkit
-- Используем слайсы
-- Есть хотя бы одна кастомная мидлвара
+- Используем Modern Redux with Redux Toolkit <br>
+
+```JSX
+import { configureStore } from '@reduxjs/toolkit';
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+    [cardsApi.reducerPath]: cardsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([cardsApi.middleware])
+});
+```
+
+- Используем слайсы <br>
+  [**userSlice**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/features/user/userSlice.jsx)
+- Есть хотя бы одна кастомная мидлвара <br>
+  [**localStorageMiddleware**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/authMiddleware.js)
 - Используется _RTK Query_ <br>
   [**RTK QUERY**](https://github.com/unknown-cat/hearthstone-api/commit/9eea85fbae0153b0cfd1f894d82a4ec4dbd4cefe)
 - Используется Transforming Responses
