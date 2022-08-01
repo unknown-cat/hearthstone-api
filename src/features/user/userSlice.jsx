@@ -17,25 +17,22 @@ const userSlice = createSlice({
     addUser: (state, { payload }) => {
       state.user = payload;
     },
-    addFavoriteCard: (state, { payload }) => {
+    toggleFavoriteCard: (state, { payload }) => {
       const { cardId } = payload;
       const card = state.user.favorites?.find((i) => i.cardId === cardId);
-      if (!card) state.user.favorites?.push(payload);
-    },
-    removeCardFromFavorites: (state, { payload }) => {
-      const { cardId } = payload;
-      const newCards = state.user.favorites?.filter((i) => i.cardId !== cardId);
-      state.user.favorites = newCards;
+
+      if (!card) {
+        state.user.favorites?.push(payload);
+      } else {
+        state.user.favorites = state.user.favorites?.filter(
+          (i) => i.cardId !== cardId
+        );
+      }
     },
   },
 });
 
-export const {
-  loginUser,
-  logoutUser,
-  addUser,
-  addFavoriteCard,
-  removeCardFromFavorites,
-} = userSlice.actions;
+export const { loginUser, logoutUser, addUser, toggleFavoriteCard } =
+  userSlice.actions;
 
 export default userSlice.reducer;

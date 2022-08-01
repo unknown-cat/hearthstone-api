@@ -2,8 +2,7 @@ import {
   loginUser,
   logoutUser,
   addUser,
-  addFavoriteCard,
-  removeCardFromFavorites,
+  toggleFavoriteCard,
 } from './features/user/userSlice';
 
 import { getUserFromLocalStorage } from './utils/utils';
@@ -24,26 +23,18 @@ export const localstorageMiddleware = (store) => (next) => (action) => {
     localStorage.setItem('user', JSON.stringify(payload));
   }
 
-  if (removeCardFromFavorites.match(action)) {
+  if (toggleFavoriteCard.match(action)) {
     const userData = getUserFromLocalStorage();
     const { cardId } = action.payload;
-    const filteredCards = userData.favorites?.filter(
-      (i) => i.cardId !== cardId
-    );
-    userData.favorites = filteredCards;
-
-    localStorage.setItem('user', JSON.stringify(userData));
-  }
-
-  if (addFavoriteCard.match(action)) {
-    const userData = getUserFromLocalStorage();
-    const { cardId } = action.payload;
-
-    if (userData.favorites < 1) userData.favorites.push(action.payload);
-
     const cardData = userData.favorites?.find((i) => i.cardId === cardId);
 
-    if (!cardData) userData.favorites?.push(action.payload);
+    if (!cardData) {
+      userData.favorites?.push(action.payload);
+    } else {
+      userData.favorites = userData.favorites?.filter(
+        (i) => i.cardId !== cardId
+      );
+    }
 
     localStorage.setItem('user', JSON.stringify(userData));
   }

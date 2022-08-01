@@ -6,12 +6,9 @@ import { useGetCardQuery } from '../../services/cardsApi';
 
 import { Button } from '../../components';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  addFavoriteCard,
-  removeCardFromFavorites,
-} from '../../features/user/userSlice';
+import { toggleFavoriteCard } from '../../features/user/userSlice';
 
 import cardBack from '../../assets/card-back.png';
 
@@ -20,18 +17,17 @@ import s from './singleCard.module.css';
 const SingleCard = () => {
   const { cardId } = useParams();
   const { data = [], isLoading } = useGetCardQuery(cardId);
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+
+  const isExist = user.favorites?.some((i) => i.cardId === cardId);
 
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
 
   const { img, name } = data[0];
 
-  const handleAddCardClick = (e) => {
-    dispatch(addFavoriteCard(data[0]));
-  };
-
-  const handleRemoveCardClick = (e) => {
-    dispatch(removeCardFromFavorites({ cardId }));
+  const handleToggleClick = () => {
+    dispatch(toggleFavoriteCard({ ...data[0] }));
   };
 
   return (
@@ -49,8 +45,9 @@ const SingleCard = () => {
             return null;
           }
         })}
-        <Button onClick={handleAddCardClick}>add</Button> {''}
-        <Button onClick={handleRemoveCardClick}>remove</Button>
+        <Button onClick={handleToggleClick}>
+          {!isExist ? 'add' : 'remove'}
+        </Button>
       </section>
     </article>
   );

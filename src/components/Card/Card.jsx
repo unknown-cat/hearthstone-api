@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  addFavoriteCard,
-  removeCardFromFavorites,
-} from '../../features/user/userSlice';
+import { toggleFavoriteCard } from '../../features/user/userSlice';
 
 import { Button } from '..';
 
@@ -21,30 +18,16 @@ const Card = ({ props }) => {
   const { name, img, cardId, cardSet } = props;
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const [isCardExist, setIsCardExist] = useState(false);
 
-  const handleAddClick = () => {
-    setIsCardExist(!isCardExist);
-    dispatch(addFavoriteCard(props));
+  const isExist = user.favorites?.some((i) => i.cardId === cardId);
+
+  const handleToggleClick = () => {
+    dispatch(toggleFavoriteCard(props));
   };
-
-  const handleRemoveClick = () => {
-    setIsCardExist(!isCardExist);
-    dispatch(removeCardFromFavorites({ cardId }));
-  };
-
-  useEffect(() => {
-    const { favorites } = user;
-    const isExist = favorites?.some((i) => i.cardId === cardId);
-    setIsCardExist(isExist);
-  }, [cardId, user]);
 
   const FavoritesButton = () => (
-    <Button
-      className={s.btn}
-      onClick={isCardExist ? handleRemoveClick : handleAddClick}
-    >
-      {isCardExist ? '★' : '☆'}
+    <Button className={s.btn} onClick={handleToggleClick}>
+      {isExist ? '★' : '☆'}
     </Button>
   );
 
