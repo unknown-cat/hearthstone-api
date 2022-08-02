@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { addToHistory } from '../../features/user/userSlice';
+
+import { useDispatch } from 'react-redux';
+
 import { useSearchParams } from 'react-router-dom';
 
 import FormInput from '../FormInput/FormInput';
@@ -9,6 +13,7 @@ import s from './searchForm.module.css';
 const SearchForm = ({ setSubmittedQuery }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm = searchParams.get('search') || '';
+  const dispatch = useDispatch();
 
   const handleSearch = (e) => {
     const search = e.target.value;
@@ -21,7 +26,10 @@ const SearchForm = ({ setSubmittedQuery }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmittedQuery(searchTerm);
+    if (searchTerm !== '') {
+      dispatch(addToHistory(searchTerm));
+      setSubmittedQuery(searchTerm);
+    }
   };
 
   return (

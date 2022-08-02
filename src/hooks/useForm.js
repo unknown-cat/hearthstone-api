@@ -9,6 +9,7 @@ const initialState = {
   password: '',
   guest: true,
   favorites: [],
+  history: [],
 };
 
 const useForm = (validate) => {

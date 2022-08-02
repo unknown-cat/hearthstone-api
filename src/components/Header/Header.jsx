@@ -33,6 +33,9 @@ const Header = () => {
       <Link to='/favorites' className={s.navItem}>
         favorites
       </Link>
+      <Link to='/history' className={s.navItem}>
+        history
+      </Link>
       <Link to='/' className={s.navItem} onClick={handleClick}>
         logout
       </Link>

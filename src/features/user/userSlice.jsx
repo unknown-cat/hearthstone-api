@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getUserFromLocalStorage } from '../../utils/utils';
+import { getUserFromLocalStorage, currenDate } from '../../utils/utils';
 
 const initialState = {
   user: getUserFromLocalStorage(),
@@ -29,10 +29,18 @@ const userSlice = createSlice({
         );
       }
     },
+    addToHistory: (state, { payload }) => {
+      state.user.history.push(payload + currenDate());
+    },
   },
 });
 
-export const { loginUser, logoutUser, addUser, toggleFavoriteCard } =
-  userSlice.actions;
+export const {
+  loginUser,
+  logoutUser,
+  addUser,
+  toggleFavoriteCard,
+  addToHistory,
+} = userSlice.actions;
 
 export default userSlice.reducer;
