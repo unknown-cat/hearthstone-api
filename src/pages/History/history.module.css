@@ -1,0 +1,38 @@
+.history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90vw;
+  margin: 1rem auto;
+}
+
+.history ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  padding-left: 0;
+  align-items: center;
+}
+
+.history li {
+  width: 50%;
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1d1c1c;
+}
+
+.history a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .history li {
+    width: 80%;
+    flex-direction: column;
+  }
+}

@@ -3,9 +3,10 @@ import {
   logoutUser,
   addUser,
   toggleFavoriteCard,
+  addToHistory,
 } from './features/user/userSlice';
 
-import { getUserFromLocalStorage } from './utils/utils';
+import { getUserFromLocalStorage, currenDate } from './utils/utils';
 
 export const localstorageMiddleware = (store) => (next) => (action) => {
   const userData = store.getState().user.user;
@@ -36,6 +37,12 @@ export const localstorageMiddleware = (store) => (next) => (action) => {
       );
     }
 
+    localStorage.setItem('user', JSON.stringify(userData));
+  }
+
+  if (addToHistory.match(action)) {
+    const userData = getUserFromLocalStorage();
+    userData.history?.push(action.payload + currenDate());
     localStorage.setItem('user', JSON.stringify(userData));
   }
 
