@@ -7,3 +7,4 @@ export { default as SearchForm } from './SearchForm/SearchForm';
 export { default as LoginForm } from './LoginForm/LoginForm';
 export { default as RegisterForm } from './RegisterForm/RegisterForm';
 export { default as ErrorFallback } from './ErrorFallback/ErrorFallback';
+export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
