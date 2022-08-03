@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { transformKeysAndValues } from '../utils/utils';
+
 const API_URL = `https://omgvamp-hearthstone-v1.p.rapidapi.com`;
 const SEARCH_ENDPOINT = '/cards/search/';
 const SINGLE_CARD_ENDPOINT = '/cards/';
@@ -20,22 +22,19 @@ export const cardsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     getCards: builder.query({
-      query: (query) => {
-        return {
-          url: `${SEARCH_ENDPOINT}${query}`,
-          method,
-          headers,
-        };
-      },
+      query: (query) => ({
+        url: `${SEARCH_ENDPOINT}${query}`,
+        method,
+        headers,
+      }),
     }),
     getCard: builder.query({
-      query: (id) => {
-        return {
-          url: `${SINGLE_CARD_ENDPOINT}${id}`,
-          method,
-          headers,
-        };
-      },
+      query: (id) => ({
+        url: `${SINGLE_CARD_ENDPOINT}${id}`,
+        method,
+        headers,
+      }),
+      transformResponse: (response) => transformKeysAndValues(response[0]),
     }),
   }),
 });

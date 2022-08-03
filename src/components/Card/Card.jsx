@@ -25,12 +25,6 @@ const Card = ({ props }) => {
     dispatch(toggleFavoriteCard(props));
   };
 
-  const FavoritesButton = () => (
-    <Button className={s.btn} onClick={handleToggleClick}>
-      {isExist ? '★' : '☆'}
-    </Button>
-  );
-
   return (
     <article className={s.card}>
       <Link to={`/cards/${cardId}`}>
@@ -42,7 +36,12 @@ const Card = ({ props }) => {
           </section>
         )}
       </Link>
-      <FavoritesButton />
+
+      {user.favorites && (
+        <Button className={s.btn} onClick={handleToggleClick}>
+          {isExist ? '★' : '☆'}
+        </Button>
+      )}
     </article>
   );
 };

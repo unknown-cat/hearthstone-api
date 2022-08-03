@@ -30,7 +30,7 @@ const userSlice = createSlice({
       }
     },
     addToHistory: (state, { payload }) => {
-      state.user.history.push(payload + currenDate());
+      state.user.history?.push(payload + currenDate());
     },
   },
 });
