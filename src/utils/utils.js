@@ -44,3 +44,32 @@ export const currenDate = () => {
     today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
   return ' ' + date + ' ' + time;
 };
+
+export const clearText = ({text}) => {
+  const bTagsXBracesRegex = /(\[x\])*(<b>)*(<\/b>)*/g;
+  const newLineRegex = /\\n*/g;
+  let newText = text;
+
+  if (newText) {
+    newText = newText.replace(bTagsXBracesRegex, '').replace(newLineRegex, ' ');
+  }
+
+  return newText;
+};
+
+export const transformKeysAndValues = (obj) => {
+  return {
+    Id: obj.cardId,
+    Artist: obj.artist,
+    Rarity: obj.rarity,
+    Name: obj.name,
+    'Spell School': obj.spellSchool,
+    'Player Class': obj.playerClass,
+    Set: obj.cardSet,
+    Type: obj.type,
+    Faction: obj.faction,
+    Flavor: obj.flavor,
+    Text: clearText(obj),
+    'Image url': obj.img,
+  };
+};
