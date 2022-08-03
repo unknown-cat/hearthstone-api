@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { Navigate } from 'react-router-dom';
 
-export const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children }) => {
   const { user } = useSelector((store) => store.user);
 
   if (user.guest && user.name) {
@@ -15,3 +15,5 @@ export const PrivateRoute = ({ children }) => {
 
   return children;
 };
+
+export default PrivateRoute;
