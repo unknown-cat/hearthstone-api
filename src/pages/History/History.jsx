@@ -2,17 +2,13 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import s from './history.module.css';
 
 const History = () => {
   const { user } = useSelector((store) => store.user);
   let { history } = user;
-
-  if (!user.name || user.guest) {
-    return <Navigate to='/' replace />;
-  }
 
   return (
     <section className={s.history}>
