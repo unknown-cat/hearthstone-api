@@ -6,23 +6,27 @@ import { Card } from '../../components';
 
 import s from './cardList.module.css';
 
-const CardList = ({ cards, isLoading, favorites }) => {
-  if (cards < 1) {
-    return (
-      <h2 style={{ textAlign: 'center', paddingTop: '3rem' }}>
-        {isLoading && <code>Loading...</code>}
-        {favorites && 'Add some Favorite cards!'}
-        {!favorites && !isLoading ? 'Start Searching!' : null}
-      </h2>
-    );
-  }
+const CardList = ({ cards, isLoading, favorites, error }) => {
+  const renderMessage = (
+    <h2 className={s.message}>
+      {isLoading && <code>Loading...</code>}
+      {favorites && 'Add some Favorite cards!'}
+      {error && !isLoading && error.data.message}
+    </h2>
+  );
+
+  if (cards.length < 1) return renderMessage;
+
+  const renderCards =
+    !error &&
+    !isLoading &&
+    cards.map(({ ...props }) => <Card key={props.cardId} props={props} />);
 
   return (
-    <section className={s.cardList}>
-      {cards.map(({ ...props }) => (
-        <Card key={props.cardId} props={props} />
-      ))}
-    </section>
+    <>
+      {renderMessage}
+      <section className={s.cardList}>{renderCards}</section>
+    </>
   );
 };
 

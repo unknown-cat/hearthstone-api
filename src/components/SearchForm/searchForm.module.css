@@ -7,6 +7,8 @@
 }
 
 .form {
+  position: relative;
+  width: 30%;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
@@ -14,7 +16,9 @@
 }
 
 .input {
+  box-sizing: border-box;
   padding: 1rem;
+  width: 100%;
   border-radius: 0.5rem;
   letter-spacing: 0.1rem;
   font: inherit;
