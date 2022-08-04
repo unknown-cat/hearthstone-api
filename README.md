@@ -34,7 +34,8 @@
   [**Card**](https://github.com/unknown-cat/hearthstone-api/blob/feature/prop-types/src/components/Card/Card.jsx),<br>
   [**CardList.jsx**](https://github.com/unknown-cat/hearthstone-api/blob/feature/prop-types/src/components/CardList/CardList.jsx)
 
-- Поиск не должен триггерить много запросов к серверу
+- Поиск не должен триггерить много запросов к серверу <br>
+  [**SearchForm**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/components/SearchForm/SearchForm.jsx)
 
 # `Redux`
 
@@ -59,4 +60,5 @@ export const store = configureStore({
   [**localStorageMiddleware**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/authMiddleware.js)
 - Используется _RTK Query_ <br>
   [**RTK QUERY**](https://github.com/unknown-cat/hearthstone-api/commit/9eea85fbae0153b0cfd1f894d82a4ec4dbd4cefe)
-- Используется Transforming Responses
+- Используется Transforming Responses <br>
+  [**Transforming Responses**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/services/cardsApi.jsx)
