@@ -45,7 +45,7 @@ export const currenDate = () => {
   return ' ' + date + ' ' + time;
 };
 
-export const clearText = ({text}) => {
+export const clearText = ({ text }) => {
   const bTagsXBracesRegex = /(\[x\])*(<b>)*(<\/b>)*/g;
   const newLineRegex = /\\n*/g;
   let newText = text;
@@ -59,7 +59,7 @@ export const clearText = ({text}) => {
 
 export const transformKeysAndValues = (obj) => {
   return {
-    Id: obj.cardId,
+    cardId: obj.cardId,
     Artist: obj.artist,
     Rarity: obj.rarity,
     Name: obj.name,

@@ -20,12 +20,12 @@ const SingleCard = () => {
   const { data: cardData = [], isLoading } = useGetCardQuery(cardId);
   const dispatch = useDispatch();
 
-  const isExist = user.favorites?.some((i) => i.Id === cardId);
+  const isExist = user.favorites?.some((i) => i.cardId === cardId);
 
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
 
   const { 'Image url': img, name } = cardData;
-
+  console.log(cardData);
   const handleToggleClick = () => dispatch(toggleFavoriteCard(cardData));
 
   return (
