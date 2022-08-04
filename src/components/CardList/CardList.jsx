@@ -15,12 +15,12 @@ const CardList = ({ cards, isLoading, favorites, error }) => {
     </h2>
   );
 
+  if (cards.length < 1) return renderMessage;
+
   const renderCards =
     !error &&
     !isLoading &&
     cards.map(({ ...props }) => <Card key={props.cardId} props={props} />);
-
-  if (cards.length < 1) return renderMessage;
 
   return (
     <>
