@@ -38,10 +38,11 @@ const SearchForm = ({ setSubmittedQuery }) => {
         <FormInput
           id='name'
           className={s.input}
-          type='text'
+          type='search'
           value={searchTerm}
           onChange={handleSearch}
           placeholder='search your card'
+          autoComplete='off'
         />
       </form>
     </section>

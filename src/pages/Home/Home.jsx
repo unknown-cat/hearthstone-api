@@ -13,12 +13,12 @@ const Home = () => {
   const [submittedQuery, setSubmittedQuery] = useState(
     searchParams.get('search') || ''
   );
-  const { data = [], isLoading } = useGetCardsQuery(submittedQuery);
+  const { data = [], isFetching, error } = useGetCardsQuery(submittedQuery);
 
   return (
     <main className={s.main}>
       <SearchForm setSubmittedQuery={setSubmittedQuery} />
-      <CardList cards={data} isLoading={isLoading} />
+      <CardList cards={data} isLoading={isFetching} error={error} />
     </main>
   );
 };
