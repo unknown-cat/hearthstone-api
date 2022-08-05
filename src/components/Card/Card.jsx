@@ -15,7 +15,7 @@ import cardBack from '../../assets/card-back.png';
 import s from './card.module.css';
 
 const Card = ({ props }) => {
-  const { name, img, cardId, cardSet } = props;
+  const { name, img, cardId, cardSet, Name, Set, 'Image url': image } = props;
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
@@ -28,11 +28,11 @@ const Card = ({ props }) => {
   return (
     <article className={s.card}>
       <Link to={`/cards/${cardId}`}>
-        <img src={img || cardBack} alt={name} />
-        {!img && (
+        <img src={img || image || cardBack} alt={name || Name} />
+        {!img && !image && (
           <section className={s.section}>
-            <p>{name}</p>
-            <p>{cardSet}</p>
+            <p>{name || Name}</p>
+            <p>{cardSet || Set}</p>
           </section>
         )}
       </Link>

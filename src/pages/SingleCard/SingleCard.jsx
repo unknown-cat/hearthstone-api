@@ -24,13 +24,13 @@ const SingleCard = () => {
 
   if (isLoading) return <h2 style={{ textAlign: 'center' }}>Loading...</h2>;
 
-  const { 'Image url': img, name } = cardData;
-  console.log(cardData);
+  const { 'Image url': img, Name } = cardData;
+
   const handleToggleClick = () => dispatch(toggleFavoriteCard(cardData));
 
   return (
     <article className={s.singleCard}>
-      <img src={img ? img : cardBack} alt={name} />
+      <img src={img ? img : cardBack} alt={Name} />
 
       <section className={s.description}>
         {Object.entries(cardData).map(([key, value]) => {
