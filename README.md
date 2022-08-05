@@ -22,13 +22,21 @@
   [**LoginForm**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/components/LoginForm/LoginForm.jsx)
 
 - Есть применение _Контекст API_ <br>
-  [**Context API**](https://github.com/unknown-cat/hearthstone-api/tree/feature/context)
+  [**userContext**](https://github.com/unknown-cat/hearthstone-api/blob/feature/context/src/contexts/userContext.jsx) <br>
+  [**index.js**](https://github.com/unknown-cat/hearthstone-api/blob/feature/context/src/index.js) <br>
+  [**LoginForm**](https://github.com/unknown-cat/hearthstone-api/blob/feature/context/src/components/LoginForm/LoginForm.jsx) <br>
+  [**RegisterForm**](https://github.com/unknown-cat/hearthstone-api/blob/feature/context/src/components/RegisterForm/RegisterForm.jsx) <br>
 
 - Есть применение _предохранителя_ <br>
   [**ErrorBoundary**](https://github.com/unknown-cat/hearthstone-api/tree/feature/error-boundary)
 
 - Есть хотя бы один _кастомный хук_ <br>
-  [**useLocalStorage**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/hooks/useLocalStorage.js)
+  [**useForm**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/hooks/useForm.js)
+
+  ```JSX
+  const RegisterForm = () => {
+  const { handleSubmit, handleChange, values, errors } = useForm(validate);
+  ```
 
 - Хотя бы несколько компонентов используют <br> _PropTypes_. <br>
   [**Card**](https://github.com/unknown-cat/hearthstone-api/blob/feature/prop-types/src/components/Card/Card.jsx),<br>
@@ -49,16 +57,15 @@ export const store = configureStore({
     user: userReducer,
     [cardsApi.reducerPath]: cardsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([cardsApi.middleware])
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([cardsApi.middleware])
 });
 ```
 
 - Используем слайсы <br>
   [**userSlice**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/features/user/userSlice.jsx)
 - Есть хотя бы одна кастомная мидлвара <br>
-  [**localStorageMiddleware**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/authMiddleware.js)
+  [**localStorageMiddleware**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/localstorageMiddleware.js)
 - Используется _RTK Query_ <br>
-  [**RTK QUERY**](https://github.com/unknown-cat/hearthstone-api/commit/9eea85fbae0153b0cfd1f894d82a4ec4dbd4cefe)
+  [**RTK QUERY**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/services/cardsApi.jsx)
 - Используется Transforming Responses <br>
   [**Transforming Responses**](https://github.com/unknown-cat/hearthstone-api/blob/main/src/services/cardsApi.jsx)
